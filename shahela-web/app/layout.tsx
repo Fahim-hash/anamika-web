@@ -1,4 +1,5 @@
 import { EB_Garamond, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 const ebGaramond = EB_Garamond({ subsets: ["latin"], variable: "--font-serif" });
