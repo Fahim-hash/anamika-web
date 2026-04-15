@@ -1,125 +1,140 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { Heart, Sparkles, Star, PartyPopper } from "lucide-react";
+import { motion } from "framer-motion";
+import { Heart, Sparkles, Star, ChevronDown } from "lucide-react";
 
-/** * SHAHELA'S BIRTHDAY - CINEMATIC STORYBOARD EDITION
- * No more album grids. Just a pure visual journey.
+/** * SHAHELA'S BIRTHDAY - IMMERSIVE CANVAS EDITION
+ * No Grids. No Albums. Just pure Full-Screen Visuals.
  * Built by: RelaxStudio (2026)
  */
 
-const StorySection = ({ src, title, description, index }: { src: string; title: string; description: string; index: number }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
+const FullScreenSlide = ({ src, title, sub, delay = 0 }: { src: string; title: string; sub: string; delay?: number }) => (
+  <section className="relative h-[100dvh] w-full overflow-hidden snap-start">
+    <motion.div 
+      initial={{ scale: 1.2, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      className="absolute inset-0"
+    >
+      <img src={src} className="w-full h-full object-cover" alt={title} />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90" />
+    </motion.div>
 
-  const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1.1]);
-
-  return (
-    <section ref={ref} className="relative h-screen w-full flex items-center justify-center overflow-hidden px-6">
-      <motion.div style={{ scale, opacity }} className="relative w-full max-w-5xl aspect-[16/10] md:aspect-video rounded-[40px] md:rounded-[80px] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)]">
-        <motion.img 
-          style={{ y }}
-          src={src} 
-          className="absolute inset-0 w-full h-[120%] object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" 
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-        
-        <div className="absolute bottom-12 left-12 md:bottom-20 md:left-20 z-20 max-w-xl">
-          <motion.span className="text-rose-500 font-black text-[10px] tracking-[0.5em] uppercase block mb-4">
-            MOMENT — 0{index + 1}
-          </motion.span>
-          <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter text-white mb-4 uppercase">
-            {title}
-          </h2>
-          <p className="font-['Noto_Serif_Bengali'] text-lg md:text-2xl text-white/60 leading-relaxed font-light italic">
-            {description}
-          </p>
-        </div>
+    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-24 pb-32">
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+      >
+        <span className="text-rose-500 font-black text-[10px] tracking-[0.8em] uppercase mb-4 block">
+          Visual Verse
+        </span>
+        <h2 className="text-5xl md:text-[120px] font-black italic tracking-tighter text-white leading-[0.85] mb-8 uppercase">
+          {title}
+        </h2>
+        <p className="font-['Noto_Serif_Bengali'] text-xl md:text-3xl text-white/50 max-w-2xl font-light italic border-l-2 border-rose-600/30 pl-6">
+          {sub}
+        </p>
       </motion.div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
-export default function CinematicBirthday() {
-  const stories = [
-    { src: "/images/shahela1.jpg", title: "The Presence", description: "একটি সাধারণ মুহূর্ত যখন অসাধারণ হয়ে ওঠে।" },
-    { src: "/images/shahela2.jpg", title: "Noir Soul", description: "মায়ার বাঁধনে ঘেরা এক চিরচেনা রূপ।" },
-    { src: "/images/shahela3.jpg", title: "Pure Grace", description: "স্নিগ্ধতায় মোড়ানো বসন্তের এক দুপুর।" },
-    { src: "/images/shahela4.jpg", title: "Eternal", description: "দৃষ্টি যেখানে কথা বলে শব্দের চেয়েও বেশি।" },
-    { src: "/images/shahela5.png", title: "The Celebration", description: "আজকের এই বিশেষ দিনের প্রতিটি মুহূর্ত হোক সার্থক।" },
-  ];
-
+export default function ImmersiveBirthday() {
   return (
-    <div className="bg-[#030303] text-white selection:bg-rose-600/30 overflow-x-hidden">
+    <div className="bg-black text-white h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar">
       
-      {/* 🌌 Intro Landing */}
-      <header className="h-screen flex flex-col justify-center items-center text-center relative px-6">
+      {/* 🎭 Scene 1: The Intro (Hero) */}
+      <section className="relative h-[100dvh] w-full flex items-center justify-center snap-start overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="/images/shahela1.jpg" className="w-full h-full object-cover opacity-40 blur-[2px]" />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5 }}
-          className="z-10"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2 }}
+          className="relative z-10 text-center px-6"
         >
-          <div className="flex justify-center mb-8">
-            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 10, ease: "linear" }}>
-              <Star className="text-amber-400/50" size={40} />
-            </motion.div>
+          <div className="flex justify-center mb-10">
+             <div className="p-1 rounded-full bg-gradient-to-r from-rose-600 to-amber-500">
+                {/* তোমার সেই রিফায়েন্স ইমেজটি এখানে বসাতে পারো */}
+                <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-black">
+                   <img src="/images/shahela5.png" className="w-full h-full object-cover" />
+                </div>
+             </div>
           </div>
-          <h1 className="text-[15vw] font-black italic tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-rose-900/20">
-            SHAHELA
+          <h1 className="text-[18vw] md:text-[14vw] font-black italic tracking-tighter leading-none mix-blend-screen mb-4">
+            SHAH<span className="text-rose-600">ELA</span>
           </h1>
-          <p className="mt-8 text-[10px] md:text-xs tracking-[1em] uppercase text-rose-500 font-bold ml-[1em]">
-            A Visual Story • Birthday 2026
-          </p>
+          <p className="text-[10px] md:text-xs tracking-[1.5em] uppercase text-white/30 ml-[1.5em]">Birthday Experience • 2026</p>
         </motion.div>
 
-        {/* Floating Background Glows */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-rose-600/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-rose-900/5 blur-[150px] rounded-full" />
-      </header>
-
-      {/* 🎞️ Story Sections */}
-      <main className="relative">
-        {stories.map((story, i) => (
-          <StorySection key={i} {...story} index={i} />
-        ))}
-      </main>
-
-      {/* 💌 Final Wish Section */}
-      <section className="min-h-screen flex flex-center items-center justify-center px-6">
         <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="max-w-4xl w-full bg-zinc-950 border border-white/5 p-16 md:p-32 rounded-[60px] text-center shadow-2xl relative overflow-hidden"
+          animate={{ y: [0, 10, 0] }} 
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/20 flex flex-col items-center gap-2"
         >
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-rose-600/5 blur-[100px]" />
-          <Heart className="mx-auto text-rose-600 mb-12 animate-pulse" size={48} fill="currentColor" />
-          <h3 className="text-xs tracking-[1em] uppercase text-white/30 mb-10">Final Note</h3>
-          <p className="font-['Noto_Serif_Bengali'] text-2xl md:text-4xl leading-relaxed italic font-light text-white/80">
-            "শুভ জন্মদিন শাহেলা আপু! আজকের এই পাতাগুলো শেষ হলেও তোমার জীবনের প্রতিটি পাতা যেন সাফল্যে আর হাসিতে রঙিন থাকে। রিল্যাক্সস্টুডিওর পক্ষ থেকে শ্রদ্ধা ও ভালোবাসা।"
-          </p>
-          <motion.div className="mt-20">
-            <PartyPopper size={32} className="mx-auto text-amber-500 opacity-50" />
-          </motion.div>
+          <span className="text-[8px] uppercase tracking-widest font-black">Scroll Down</span>
+          <ChevronDown size={20} />
         </motion.div>
       </section>
 
-      {/* 📜 Footer Signature */}
-      <footer className="py-24 text-center">
-        <p className="text-[10px] tracking-[2em] text-white/10 uppercase mb-4">RelaxStudio Productions</p>
-        <div className="text-6xl font-black italic tracking-tighter opacity-5">SHAHELA.2026</div>
-      </footer>
+      {/* 📽️ Scene 2: The Muse */}
+      <FullScreenSlide 
+        src="/images/shahela2.jpg" 
+        title="Noir Magic" 
+        sub="দৃষ্টির সীমানায় যখন শুধু মায়া খেলা করে।" 
+      />
+
+      {/* 📽️ Scene 3: The Aura */}
+      <FullScreenSlide 
+        src="/images/shahela3.jpg" 
+        title="Pure Spirit" 
+        sub="স্নিগ্ধতা যখন গল্পের প্রতিটি অক্ষরে মিশে যায়।" 
+      />
+
+      {/* 📽️ Scene 4: The Archive (Ref: image_ca4b27) */}
+      <FullScreenSlide 
+        src="/images/shahela4.jpg" 
+        title="Eternal Flow" 
+        sub="সময়ের স্রোতে ভাসমান কিছু অমলিন স্মৃতি।" 
+      />
+
+      {/* 💌 Scene 5: The Final Wish */}
+      <section className="relative h-[100dvh] w-full flex items-center justify-center snap-start bg-[#050505]">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-rose-900/10 via-transparent to-transparent opacity-50" />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center px-8 relative z-10"
+        >
+          <Heart className="mx-auto text-rose-600 mb-12 animate-pulse" size={50} fill="currentColor" />
+          <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter mb-12 uppercase">Keep Smiling, <br/> Shahela Apu.</h2>
+          
+          <div className="font-['Noto_Serif_Bengali'] text-xl md:text-3xl font-light italic text-white/60 max-w-3xl leading-relaxed">
+            "আজকের এই বিশেষ ক্ষণে আমাদের একটাই চাওয়া—তোমার হাসিটা যেন এভাবেই চিরকাল অমলিন থাকে। শুভ জন্মদিন!"
+          </div>
+          
+          <div className="mt-20">
+             <p className="text-[10px] tracking-[1em] uppercase text-rose-500 font-bold">RelaxStudio Production</p>
+          </div>
+        </motion.div>
+      </section>
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@300;400;700&display=swap');
-        ::-webkit-scrollbar { display: none; }
-        body { background: #030303; scrollbar-width: none; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        body { 
+          background: black;
+          margin: 0;
+          padding: 0;
+        }
       `}</style>
     </div>
   );
