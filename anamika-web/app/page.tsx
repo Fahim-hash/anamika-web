@@ -40,12 +40,12 @@ export default function DomainReserved() {
 
         {/* Instagram Link Button */}
         <a 
-          href="https://instagram.com/relaxstudio" // এখানে আপনার অরিজিনাল ইউজারনেম দিন
+          href="https://instagram.com/relaxstudio__" // এখানে আপনার অরিজিনাল ইউজারনেম দিন
           target="_blank"
           rel="noopener noreferrer"
           className="group relative flex items-center justify-center gap-3 w-full py-4 px-6 bg-white text-black font-semibold rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
         >
-          <Instagram className="w-5 h-5 transition-transform group-hover:rotate-12" />
+          <Camera className="w-5 h-5 transition-transform group-hover:rotate-12" />
           Follow our Journey
         </a>
 
