@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/** * SHAHELA UNIVERSE - PREMIUN NOIR EDITION
- * Built by: RelaxStudio (2026)
+/** * ANAMIKA UNIVERSE - PREMIUN NOIR EDITION
+ * Customized by: RelaxStudio (2026)
  * Theme: Upoonasik Dark / Cyber-Noir
  */
 
@@ -64,7 +64,7 @@ function MainCard({ id, img, title, desc, reverse = false }: { id: number; img: 
 
 // --- Main Page Component ---
 
-export default function ShahelaUniverse() {
+export default function AnamikaUniverse() {
   const [mounted, setMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -73,11 +73,11 @@ export default function ShahelaUniverse() {
   }, []);
 
   const mainImages = [
-    { id: 1, img: "/images/shahela1.jpg", title: "স্নিগ্ধ হাসির মায়াজাল", desc: "এক চিমটি হাসিতেই যেন থমকে দাঁড়ায় মহাবিশ্বের সব ব্যস্ততা।" },
-    { id: 2, img: "/images/shahela2.jpg", title: "শীতল চাহনি", desc: "কালো চশমার আড়ালে লুকানো রহস্যময়ী এক হাসি।" },
-    { id: 3, img: "/images/shahela3.jpg", title: "শাশ্বত স্নিগ্ধতা", desc: "শান্ত চোখের মায়ায় বোনা এক টুকরো নিভৃত কাব্য।" },
-    { id: 4, img: "/images/shahela4.jpg", title: "নিভৃত আনমনা", desc: "সবুজের ইশারায় দূর অজানা কোনো স্বপ্নের খোঁজে।" },
-    { id: 5, img: "/images/shahela5.jpg", title: "রেশমি রিনঝিন", desc: "লাল চুড়ির আবদারে মিশে থাকা এক চিলতে দুষ্টুমি আর আভিজাত্য।" },
+    { id: 1, img: "/images/anamika1.jpg", title: "মায়াবী দৃষ্টির হাতছানি", desc: "চোখের পাতায় যেন লেখা থাকে হাজারো না বলা গল্পের ছন্দ।" },
+    { id: 2, img: "/images/anamika2.jpg", title: "নীলিমার আভা", desc: "এক টুকরো নীল শাড়িতে মিশে থাকা শান্ত বিকেলের স্নিগ্ধতা।" },
+    { id: 3, img: "/images/anamika3.jpg", title: "চুপচাপ চারপাশ", desc: "নিস্তব্ধতার মাঝে নিজের সাথে কাটানো কিছু একান্ত মূহুর্ত।" },
+    { id: 4, img: "/images/anamika4.jpg", title: "রোদ্দুর বেলা", desc: "জানালার গ্রিল ছুঁয়ে আসা রোদের মতই উজ্জ্বল তার সেই হাসি।" },
+    { id: 5, img: "/images/anamika5.jpg", title: "কৃষ্ণচূড়ার মায়া", desc: "শহরের ভিড়ে সে যেন এক পশলা বৃষ্টির মতো শীতল আর স্নিগ্ধ।" },
   ];
 
   if (!mounted) return null;
@@ -101,15 +101,15 @@ export default function ShahelaUniverse() {
         {/* Navbar */}
         <nav className="fixed top-8 left-0 w-full z-[100] px-10 pointer-events-none">
           <div className="max-w-7xl mx-auto flex justify-between items-center bg-white/[0.03] border border-white/10 backdrop-blur-2xl px-8 py-4 rounded-full pointer-events-auto">
-            <div className="text-xl font-black italic tracking-tighter">SHAHELA<span className="text-rose-600"> APU</span></div>
-            <div className="text-[8px] font-mono text-white/20 uppercase tracking-widest">System_Online</div>
+            <div className="text-xl font-black italic tracking-tighter">ANAMIKA<span className="text-rose-600"> DIARY</span></div>
+            <div className="text-[8px] font-mono text-white/20 uppercase tracking-widest">Digital_Soul</div>
           </div>
         </nav>
 
         <main className="max-w-7xl mx-auto px-8 pt-48 pb-32">
           <header className="mb-64 text-center">
             <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 1 }}>
-              <h1 className="text-7xl md:text-[220px] font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/5 leading-[0.8]">Shahela.</h1>
+              <h1 className="text-7xl md:text-[220px] font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/5 leading-[0.8]">Anamika.</h1>
               <p className="font-['Noto_Serif_Bengali'] text-[15px] tracking-[0.3em] text-rose-500/80 font-semibold mt-10">
                 — এই উপন্যাসের প্রধান চরিত্র —
               </p>
@@ -117,8 +117,8 @@ export default function ShahelaUniverse() {
           </header>
 
           <SectionTitle 
-            title="মূল গ্যালারি" 
-            subtitle="নির্বাচিত অধ্যায়সমূহ" 
+            title="গ্যালারি আর্কাইভ" 
+            subtitle="সংগৃহীত মুহূর্তসমূহ" 
           />
           
           <div className="mb-80">
@@ -134,20 +134,20 @@ export default function ShahelaUniverse() {
             <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-white/10 pb-12 gap-8">
               <div>
                 <h3 className="text-[11px] tracking-[1.2em] uppercase text-rose-600 font-black mb-4 font-['Hind_Siliguri']">
-                  আড়ালে জমানো
+                  স্মৃতির পাতায়
                 </h3>
                 <p className="text-3xl font-light italic text-white/60 leading-tight font-['Noto_Serif_Bengali']">
-                  অনন্তকাল থেকে ধার করা, <br/> কিছু থমকে যাওয়া মুহূর্ত।
+                  অনামিকার রঙিন দিনগুলোর, <br/> কিছু থমকে যাওয়া গল্প।
                 </p>
               </div>
               <div className="px-10 py-4 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono italic text-white/30 tracking-widest uppercase">
-                সংগ্রহশালা: সম্পূর্ণ
+                স্ট্যাটাস: সংরক্ষিত
               </div>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-8">
               {[...Array(12)].map((_, i) => {
-                const imgUrl = `/images/a${i + 1}${i === 4 ? '.png' : '.jpg'}`;
+                const imgUrl = `/images/anamika_a${i + 1}.jpg`;
                 return (
                   <motion.div 
                     key={i} 
@@ -189,7 +189,7 @@ export default function ShahelaUniverse() {
                transition={{ repeat: Infinity, duration: 4 }} 
                className="text-[100px] md:text-[150px] font-black italic tracking-tighter text-white select-none pointer-events-none pb-20 opacity-5"
             >
-              SHAHELA
+              ANAMIKA
             </motion.div>
           </footer>
         </main>
