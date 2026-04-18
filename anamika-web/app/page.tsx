@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Sparkles, ShieldCheck } from 'lucide-react';
+import { Camera, Sparkles, ShieldCheck } from 'lucide-react';
 
 export default function DomainReserved() {
   return (
