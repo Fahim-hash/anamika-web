@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /** * ANAMIKA UNIVERSE - PREMIUN NOIR EDITION
- * Customized by: RelaxStudio (2026)
+ * Built by: RelaxStudio (2026)
  * Theme: Upoonasik Dark / Cyber-Noir
  */
 
@@ -67,21 +67,60 @@ function MainCard({ id, img, title, desc, reverse = false }: { id: number; img: 
 export default function AnamikaUniverse() {
   const [mounted, setMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  
+  // লকিং সিস্টেমের জন্য স্টেট
+  const [isLocked, setIsLocked] = useState(true);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const mainImages = [
-    { id: 1, img: "/images/anamika1.jpg", title: "মায়াবী দৃষ্টির হাতছানি", desc: "চোখের পাতায় যেন লেখা থাকে হাজারো না বলা গল্পের ছন্দ।" },
-    { id: 2, img: "/images/anamika2.jpg", title: "নীলিমার আভা", desc: "এক টুকরো নীল শাড়িতে মিশে থাকা শান্ত বিকেলের স্নিগ্ধতা।" },
+    { id: 1, img: "/images/anamika1.jpg", title: "মায়াবী দৃষ্টির হাতছানি", desc: "চোখের পাতায় যেন লেখা থাকে হাজারো না বলা গল্পের ছন্দ।" },
+    { id: 2, img: "/images/anamika2.jpg", title: "নীলিমার আভা", desc: "এক টুকরো নীল শাড়িতে মিশে থাকা শান্ত বিকেলের স্নিগ্ধতা।" },
     { id: 3, img: "/images/anamika3.jpg", title: "চুপচাপ চারপাশ", desc: "নিস্তব্ধতার মাঝে নিজের সাথে কাটানো কিছু একান্ত মূহুর্ত।" },
-    { id: 4, img: "/images/anamika4.jpg", title: "রোদ্দুর বেলা", desc: "জানালার গ্রিল ছুঁয়ে আসা রোদের মতই উজ্জ্বল তার সেই হাসি।" },
-    { id: 5, img: "/images/anamika5.jpg", title: "কৃষ্ণচূড়ার মায়া", desc: "শহরের ভিড়ে সে যেন এক পশলা বৃষ্টির মতো শীতল আর স্নিগ্ধ।" },
+    { id: 4, img: "/images/anamika4.jpg", title: "রোদ্দুর বেলা", desc: "জানালার গ্রিল ছুঁয়ে আসা রোদের মতই উজ্জ্বল তার সেই হাসি।" },
+    { id: 5, img: "/images/anamika5.jpg", title: "কৃষ্ণচূড়ার মায়া", desc: "শহরের ভিড়ে সে যেন এক পশলা বৃষ্টির মতো শীতল আর স্নিগ্ধ।" },
   ];
+
+  // পাসওয়ার্ড চেক ফাংশন
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === "1234") { // <--- পাসওয়ার্ড এখানে পরিবর্তন করো
+      setIsLocked(false);
+    } else {
+      setError(true);
+      setPassword("");
+    }
+  };
 
   if (!mounted) return null;
 
+  // লক স্ক্রিন ভিউ
+  if (isLocked) {
+    return (
+      <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
+          <h2 className="text-4xl font-black italic mb-8 tracking-widest">RESTRICTED</h2>
+          <form onSubmit={handleUnlock} className="flex flex-col gap-4">
+            <input 
+              type="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="ENTER ACCESS CODE"
+              className="bg-white/5 border border-white/10 px-6 py-3 rounded-full text-center outline-none focus:border-rose-500 transition"
+            />
+            {error && <p className="text-rose-500 text-[10px] tracking-widest">ACCESS DENIED</p>}
+            <button type="submit" className="text-[10px] tracking-[0.3em] uppercase border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition">Unlock</button>
+          </form>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // লক খোলার পর মূল কন্টেন্ট
   return (
     <div className="relative min-h-screen w-full bg-[#050505] text-white font-serif selection:bg-rose-500/30 overflow-x-hidden">
       
@@ -137,7 +176,7 @@ export default function AnamikaUniverse() {
                   স্মৃতির পাতায়
                 </h3>
                 <p className="text-3xl font-light italic text-white/60 leading-tight font-['Noto_Serif_Bengali']">
-                  অনামিকার রঙিন দিনগুলোর, <br/> কিছু থমকে যাওয়া গল্প।
+                  অনামিকার রঙিন দিনগুলোর, <br/> কিছু থমকে যাওয়া গল্প।
                 </p>
               </div>
               <div className="px-10 py-4 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono italic text-white/30 tracking-widest uppercase">
@@ -203,7 +242,7 @@ export default function AnamikaUniverse() {
         body { 
           -ms-overflow-style: none; 
           scrollbar-width: none; 
-          overflow: ${selectedImage ? 'hidden' : 'auto'}; 
+          overflow: ${selectedImage || isLocked ? 'hidden' : 'auto'}; 
           background: #050505;
         }
       `}</style>
